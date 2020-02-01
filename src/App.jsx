@@ -1,27 +1,11 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import { Typography } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 import Projects from './components/Projects';
-
-const { Title } = Typography;
 
 export default function App() {
   return (
-    <div>
-      <header>
-        <Title>Observatory Client</Title>
-      </header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/projects">Projects</Link>
-          </li>
-        </ul>
-      </nav>
-
+    <Layout>
       <Switch>
         <Route path="/projects">
           <Projects />
@@ -30,7 +14,7 @@ export default function App() {
           <Home />
         </Route>
       </Switch>
-    </div>
+    </Layout>
   );
 }
 

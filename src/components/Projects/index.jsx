@@ -1,19 +1,17 @@
 import { List, Spin } from 'antd';
-import React, { useEffect, useState } from 'react';
-import api from '../../api';
+import React from 'react';
+import { useAsync } from '../../hooks';
+import {
+  useFetchProjects,
+  useProjects,
+} from '../../redux/slices/projects';
+
 
 export default function ProjectsList() {
-  const [loading, setLoading] = useState(false);
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    api.projects.getProjects()
-      .then((response) => {
-        setProjects(response);
-        setLoading(false);
-      });
-  }, [setLoading, setProjects]);
+  const { pending: loading } = useAsync(
+    useFetchProjects(),
+  );
+  const projects = useProjects();
 
   if (loading) return <Spin size="large" />;
 
