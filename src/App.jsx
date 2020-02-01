@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Typography } from 'antd';
+import Projects from './components/Projects';
 
 const { Title } = Typography;
 
@@ -16,14 +17,14 @@ export default function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/section">Section</Link>
+            <Link to="/projects">Projects</Link>
           </li>
         </ul>
       </nav>
 
       <Switch>
-        <Route path="/section">
-          <Section />
+        <Route path="/projects">
+          <Projects />
         </Route>
         <Route path="/">
           <Home />
@@ -35,8 +36,4 @@ export default function App() {
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-function Section() {
-  return <h2>First section</h2>;
 }
