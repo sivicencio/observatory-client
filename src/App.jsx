@@ -1,14 +1,11 @@
 import React from 'react';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 function App() {
   return (
-    <div>
-      <header>
-        <p>
-          Edit src/App.js and save to reload.
-        </p>
-      </header>
-    </div>
+    <Title>Observatory Client</Title>
   );
 }
 
