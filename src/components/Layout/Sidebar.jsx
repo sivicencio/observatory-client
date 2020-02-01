@@ -37,15 +37,18 @@ function SideBar({ collapsed }) {
           <MenuLink
             route="/"
             title="Home"
-            icon="user"
+            icon="home"
           />
         </Menu.Item>
         <Menu.Item key="projects">
           <MenuLink
             route="/projects"
             title="Projects"
-            icon="medicine-box"
+            icon="experiment"
           />
+        </Menu.Item>
+        <Menu.Item>
+          <MenuLink route="" title="Telescope" icon="funnel-plot" />
         </Menu.Item>
       </Menu>
     </Sider>
