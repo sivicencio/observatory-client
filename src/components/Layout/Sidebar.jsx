@@ -1,11 +1,15 @@
-import { Layout, Menu } from 'antd';
+import {
+  Icon,
+  Layout,
+  Menu,
+} from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useLocation } from 'react-router-dom';
 import MenuLink from './MenuLink';
 
-// const { SubMenu } = Menu;
+const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 const WIDTH = 220;
@@ -33,20 +37,37 @@ function SideBar({ collapsed }) {
         selectedKeys={[pathname]}
         defaultOpenKeys={defaultOpenKeys}
       >
-        <Menu.Item key="home">
+        <Menu.Item key="/">
           <MenuLink
             route="/"
             title="Home"
             icon="home"
           />
         </Menu.Item>
-        <Menu.Item key="projects">
-          <MenuLink
-            route="/projects"
-            title="Projects"
-            icon="experiment"
-          />
-        </Menu.Item>
+        <SubMenu
+          key="/projects"
+          title={(
+            <span>
+              <Icon type="experiment" />
+              <span>Projects</span>
+            </span>
+          )}
+        >
+          <Menu.Item key="/projects">
+            <MenuLink
+              route="/projects"
+              title="Projects List"
+              icon="unordered-list"
+            />
+          </Menu.Item>
+          <Menu.Item key="/next-projects">
+            <MenuLink
+              route="/next-projects"
+              title="Next Projects"
+              icon="clock-circle"
+            />
+          </Menu.Item>
+        </SubMenu>
         <Menu.Item>
           <MenuLink route="" title="Telescope" icon="funnel-plot" />
         </Menu.Item>

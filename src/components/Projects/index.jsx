@@ -1,35 +1,9 @@
-import { List, Spin } from 'antd';
 import React from 'react';
-import { useAsync } from '../../hooks';
-import {
-  useFetchProjects,
-  useProjects,
-} from '../../redux/slices/projects';
+import { useFetchProjects } from '../../redux/slices/projects';
+import ProjectsList from './List';
 
-
-export default function ProjectsList() {
-  const { pending: loading } = useAsync(
-    useFetchProjects(),
-  );
-  const projects = useProjects();
-
-  if (loading) return <Spin size="large" />;
-
+export default function Projects() {
   return (
-    <List
-      bordered
-      dataSource={projects}
-      renderItem={(item) => (
-        <List.Item>
-          <div>
-            {item.uid}
-            {item.name}
-            , duration
-            {item.duration}
-            {item.state}
-          </div>
-        </List.Item>
-      )}
-    />
+    <ProjectsList useFetch={useFetchProjects} />
   );
 }
