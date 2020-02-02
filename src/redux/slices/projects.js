@@ -56,6 +56,18 @@ export function fetchProjects() {
   };
 }
 
+export function fetchNextProjects(numProjects) {
+  return async (dispatch) => {
+    const response = await api.projects.getNextProjects(numProjects);
+    const normalized = normalize(response, [projectsSchema]);
+    dispatch(
+      actions.setProjects({
+        ...normalized,
+      }),
+    );
+  };
+}
+
 export function fetchProject(projectId) {
   return async (dispatch) => {
     const response = await api.projects.getProject(projectId);
@@ -70,6 +82,10 @@ export function fetchProject(projectId) {
 
 export function useFetchProjects() {
   return useAsyncAction(fetchProjects);
+}
+
+export function useFetchNextProjects(numProjects) {
+  return useAsyncAction(fetchNextProjects, numProjects);
 }
 
 export function useFetchProject(projectId) {

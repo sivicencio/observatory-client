@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Projects from './components/Projects';
 import Project from './components/Projects/Project';
+import NextProjects from './components/Projects/NextProjects';
 
 export default function App() {
   return (
@@ -13,6 +14,9 @@ export default function App() {
         </Route>
         <Route path="/projects/:projectId">
           <Project />
+        </Route>
+        <Route path="/next-projects">
+          <NextProjects />
         </Route>
         <Route path="/">
           <Home />
