@@ -8,6 +8,7 @@ import { getEntities } from './entities';
 
 const projectsInitialState = {
   projectsIds: [],
+  selectedProjectId: undefined,
 };
 
 const projectsSlice = createSlice({
@@ -17,6 +18,10 @@ const projectsSlice = createSlice({
     setProjects: (state, { payload: { result } }) => {
       // eslint-disable-next-line no-param-reassign
       state.projectsIds = result;
+    },
+    setSelectedProject: (state, { payload: { result } }) => {
+      // eslint-disable-next-line no-param-reassign
+      state.selectedProjectId = result;
     },
   },
 });
@@ -32,6 +37,13 @@ export function useProjects() {
   return projects;
 }
 
+export function useProject() {
+  const { selectedProjectId } = useSelector(selectState);
+  const entities = useSelector(getEntities);
+  const selectedProject = denormalize(selectedProjectId, projectsSchema, entities);
+  return selectedProject;
+}
+
 export function fetchProjects() {
   return async (dispatch) => {
     const response = await api.projects.getProjects();
@@ -44,8 +56,24 @@ export function fetchProjects() {
   };
 }
 
+export function fetchProject(projectId) {
+  return async (dispatch) => {
+    const response = await api.projects.getProject(projectId);
+    const normalized = normalize(response, projectsSchema);
+    dispatch(
+      actions.setSelectedProject({
+        ...normalized,
+      }),
+    );
+  };
+}
+
 export function useFetchProjects() {
   return useAsyncAction(fetchProjects);
+}
+
+export function useFetchProject(projectId) {
+  return useAsyncAction(fetchProject, projectId);
 }
 
 export default projectsSlice;

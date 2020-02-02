@@ -33,14 +33,14 @@ function SideBar({ collapsed }) {
         selectedKeys={[pathname]}
         defaultOpenKeys={defaultOpenKeys}
       >
-        <Menu.Item key="home">
+        <Menu.Item key="/">
           <MenuLink
             route="/"
             title="Home"
             icon="home"
           />
         </Menu.Item>
-        <Menu.Item key="projects">
+        <Menu.Item key="/projects">
           <MenuLink
             route="/projects"
             title="Projects"
